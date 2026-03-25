@@ -1,0 +1,17 @@
+# Dependências — geradas pelo npm install, não precisam ir pro repositório
+node_modules/
+
+# Variáveis de ambiente — NUNCA suba o .env real para o GitHub!
+.env
+
+# Logs gerados pelo Node.js
+*.log
+npm-debug.log*
+
+# Cache do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração de editores (opcional manter)
+.vscode/
+.idea/
