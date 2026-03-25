@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olive Notes — Entrar</title>
+
+    <!-- Font Awesome — ícones -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Nossos estilos -->
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/css/auth.css" />
+  </head>
+  <body>
+    <!-- Elementos decorativos geométricos (MCM) -->
+    <div class="auth-decoration auth-decoration-1"></div>
+    <div class="auth-decoration auth-decoration-2"></div>
+    <div class="auth-decoration auth-decoration-3"></div>
+
+    <!-- Container central -->
+    <div class="auth-wrapper">
+      <!-- Logo / Identidade visual -->
+      <div class="auth-logo">
+        <div class="auth-logo-icon">
+          <i class="fa-solid fa-note-sticky"></i>
+        </div>
+        <h1>Olive Notes</h1>
+        <p>Organize sua vida, um post-it de cada vez</p>
+      </div>
+
+      <!-- Card do formulário -->
+      <div class="auth-card">
+        <!-- Abas de navegação: Login / Cadastro -->
+        <div class="auth-tabs" role="tablist">
+          <button
+            class="auth-tab active"
+            id="tab-login"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-login"
+            onclick="switchTab('login')"
+          >
+            Entrar
+          </button>
+          <button
+            class="auth-tab"
+            id="tab-register"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-register"
+            onclick="switchTab('register')"
+          >
+            Cadastrar
+          </button>
+        </div>
+
+        <!-- ── PAINEL LOGIN ── -->
+        <div class="auth-panel active" id="panel-login" role="tabpanel">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email</label>
+            <input
+              type="email"
+              id="login-email"
+              class="form-control"
+              placeholder="seu@email.com"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="login-password">Senha</label>
+            <input
+              type="password"
+              id="login-password"
+              class="form-control"
+              placeholder="Sua senha"
+              autocomplete="current-password"
+            />
+          </div>
+
+          <button
+            class="btn-primary-mcm"
+            id="btn-login"
+            onclick="handleLogin()"
+          >
+            Entrar
+          </button>
+
+          <div class="auth-error" id="login-error"></div>
+        </div>
+
+        <!-- ── PAINEL CADASTRO ── -->
+        <div class="auth-panel" id="panel-register" role="tabpanel">
+          <div class="form-group">
+            <label class="form-label" for="register-name">Nome</label>
+            <input
+              type="text"
+              id="register-name"
+              class="form-control"
+              placeholder="Seu nome"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-email">Email</label>
+            <input
+              type="email"
+              id="register-email"
+              class="form-control"
+              placeholder="seu@email.com"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="register-password">Senha</label>
+            <input
+              type="password"
+              id="register-password"
+              class="form-control"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <button
+            class="btn-primary-mcm"
+            id="btn-register"
+            onclick="handleRegister()"
+          >
+            Criar conta
+          </button>
+
+          <div class="auth-error" id="register-error"></div>
+        </div>
+      </div>
+      <!-- fim auth-card -->
+    </div>
+    <!-- fim auth-wrapper -->
+
+    <!-- Script de autenticação -->
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Olive Notes — Meu Espaço</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/css/variables.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════════════
+       LOADING OVERLAY — exibido enquanto carrega os dados
+       ══════════════════════════════════════════════════════ -->
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loading-icon">
+        <i class="fa-solid fa-note-sticky"></i>
+      </div>
+      <p class="loading-text">Carregando seu espaço...</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       SIDEBAR OVERLAY — fundo escuro ao abrir a sidebar
+       ══════════════════════════════════════════════════════ -->
+    <div
+      class="sidebar-overlay"
+      id="sidebar-overlay"
+      onclick="closeSidebar()"
+    ></div>
+
+    <!-- SIDEBAR (renderizada dinamicamente) -->
+    <div id="sidebar-root"></div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       LAYOUT PRINCIPAL
+       ══════════════════════════════════════════════════════ -->
+    <div class="app-layout">
+      <!-- ── HEADER (renderizado dinamicamente) ─────────────── -->
+      <div id="app-header-root"></div>
+
+      <!-- ── ÁREA DAS 3 COLUNAS ──────────────────────────────── -->
+      <main class="columns-wrapper" role="main">
+        <!-- COLUNA: HOJE -->
+        <section
+          class="column column-day"
+          id="column-day"
+          data-category="day"
+          aria-label="Tarefas de hoje"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)"
+        >
+          <div class="column-header">
+            <div class="column-title">
+              <span class="column-title-dot"></span>
+              <div>
+                <span class="column-title-text">Hoje</span>
+                <span class="column-subtitle">Foco do dia</span>
+              </div>
+            </div>
+            <span class="column-counter" id="counter-day">0</span>
+          </div>
+          <div class="tasks-drop-zone" id="drop-day"></div>
+          <button class="btn-add-task" onclick="openTaskModal('day')">
+            <i class="fa-solid fa-plus"></i> Adicionar tarefa
+          </button>
+        </section>
+
+        <!-- COLUNA: SEMANA -->
+        <section
+          class="column column-week"
+          id="column-week"
+          data-category="week"
+          aria-label="Tarefas da semana"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)"
+        >
+          <div class="column-header">
+            <div class="column-title">
+              <span class="column-title-dot"></span>
+              <div>
+                <span class="column-title-text">Semana</span>
+                <span class="column-subtitle">Esta semana</span>
+              </div>
+            </div>
+            <span class="column-counter" id="counter-week">0</span>
+          </div>
+          <div class="tasks-drop-zone" id="drop-week"></div>
+          <button class="btn-add-task" onclick="openTaskModal('week')">
+            <i class="fa-solid fa-plus"></i> Adicionar tarefa
+          </button>
+        </section>
+
+        <!-- COLUNA: MÊS -->
+        <section
+          class="column column-month"
+          id="column-month"
+          data-category="month"
+          aria-label="Tarefas do mês"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)"
+        >
+          <div class="column-header">
+            <div class="column-title">
+              <span class="column-title-dot"></span>
+              <div>
+                <span class="column-title-text">Mês</span>
+                <span class="column-subtitle">Este mês</span>
+              </div>
+            </div>
+            <span class="column-counter" id="counter-month">0</span>
+          </div>
+          <div class="tasks-drop-zone" id="drop-month"></div>
+          <button class="btn-add-task" onclick="openTaskModal('month')">
+            <i class="fa-solid fa-plus"></i> Adicionar tarefa
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+       MODAL — CRIAR / EDITAR TAREFA
+       ══════════════════════════════════════════════════════ -->
+    <div
+      class="modal-overlay"
+      id="task-modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal" id="task-modal">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modal-title">Nova Tarefa</h2>
+          <button
+            class="modal-close"
+            onclick="closeTaskModal()"
+            aria-label="Fechar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="task-title">Título *</label>
+          <input
+            type="text"
+            id="task-title"
+            class="form-control"
+            placeholder="O que precisa ser feito?"
+            maxlength="120"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="task-description">
+            Descrição
+            <span style="font-weight: 400; color: var(--color-brown-light)"
+              >(opcional)</span
+            >
+          </label>
+          <textarea
+            id="task-description"
+            class="form-control"
+            placeholder="Detalhes adicionais..."
+            maxlength="500"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Categoria</label>
+          <div class="category-select" id="category-select">
+            <button
+              class="category-btn"
+              data-cat="day"
+              onclick="selectCategory('day')"
+            >
+              Hoje
+            </button>
+            <button
+              class="category-btn"
+              data-cat="week"
+              onclick="selectCategory('week')"
+            >
+              Semana
+            </button>
+            <button
+              class="category-btn"
+              data-cat="month"
+              onclick="selectCategory('month')"
+            >
+              Mês
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Cor da Tarefa</label>
+          <div class="color-picker" id="color-picker"></div>
+        </div>
+
+        <input type="hidden" id="task-edit-id" value="" />
+
+        <div class="modal-footer">
+          <button class="btn-modal-cancel" onclick="closeTaskModal()">
+            Cancelar
+          </button>
+          <button class="btn-modal-save" onclick="handleSaveTask()">
+            <i class="fa-solid fa-check"></i> Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+    <!-- Scripts — a ordem importa! -->
+    <script src="/js/config.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/components/Toast.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/components/Modal.js"></script>
+    <script src="/components/GoalItem.js"></script>
+    <script src="/components/GoalList.js"></script>
+    <script src="/components/TaskCard.js"></script>
+    <script src="/components/TaskColumn.js"></script>
+    <script src="/components/Sidebar.js"></script>
+    <script src="/components/AppHeader.js"></script>
+    <script src="/js/tasks.js"></script>
+    <script src="/js/goals.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/dragdrop.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
