@@ -266,6 +266,11 @@ const handleDeleteGoal = (goalId) => {
   confirmDeleteGoalModal.show();
 };
 
+window.handleAddGoal = handleAddGoal;
+window.handleEditGoal = handleEditGoal;
+window.handleDeleteGoal = handleDeleteGoal;
+window.handleToggleGoal = handleToggleGoal;
+
 // Função para lançar confetes coloridos
 function launchConfetti() {
   // Cria um container para os confetes
