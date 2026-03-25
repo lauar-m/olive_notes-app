@@ -22,7 +22,16 @@ window.createAppHeader = function ({
   const logoDiv = document.createElement("div");
   logoDiv.className = "header-logo";
   logoDiv.innerHTML = `
-    <div class="header-logo-icon"><i class="fa-solid fa-note-sticky"></i></div>
+    <div class="header-logo-icon" style="display:flex;align-items:center;">
+      <svg width="38" height="38" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="12" y1="21" x2="28" y2="4" stroke="#673C34" stroke-width="1.8" stroke-linecap="round"/>
+
+        <ellipse cx="18" cy="16" rx="7" ry="4" fill="#998731" stroke="#673C34" stroke-width="1.8"/>
+
+        <circle cx="14" cy="16" r="1.8" fill="#CF5527"/>
+
+      </svg>
+    </div>
     <span class="header-logo-text">Olive Notes</span>
   `;
   header.appendChild(logoDiv);

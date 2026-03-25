@@ -1,85 +1,54 @@
-/* ─────────────────────────────────────────────────────────────
-   Design Tokens — Mid-Century Modern
-   Todas as cores, fontes e espaçamentos do projeto ficam aqui.
-   Alterar um token reflete em toda a aplicação.
-   ──────────────────────────────────────────────────────────── */
-
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap");
 
 :root {
-  /* ── PALETA PRINCIPAL ─── Mid-Century Warm ──────────────── */
-  --color-mustard: #d4a843; /* mostarda quente — destaque principal */
-  --color-mustard-dark: #b8902d; /* mostarda escura — hover e bordas */
-  --color-mustard-soft: #edd98a; /* mostarda clara — pós-its amarelos */
+  --color-cream: #f2ead3;
+  --color-olive: #998731;
+  --color-olive-dark: #7a6c27;
+  --color-olive-light: #b8a84a;
+  --color-blue: #5fa8c2;
+  --color-orange: #cf5527;
+  --color-red: #7d2027;
+  --color-dark-brown: #3d2b1a;
 
-  --color-olive: #6b7a3e; /* verde oliva — categoria "semana" */
-  --color-olive-soft: #a8b87a; /* verde suave — tag e acentos */
+  --background: #f2ead3;
+  --foreground: #3d2b1a;
+  --column-bg: #ebe3cc;
+  --border-color: rgba(61, 43, 26, 0.1);
 
-  --color-terra: #c1603e; /* terracota — categoria "mês" e alertas */
-  --color-terra-soft: #e8a48a; /* terracota suave — pós-its laranja */
+  --card-red: #7d2027;
+  --card-orange: #cf5527;
+  --card-blue: #5fa8c2;
+  --card-olive: #998731;
+  --card-yellow: #d4a843;
+  --card-green: #5a7a3a;
 
-  --color-sage: #8a9e7a; /* verde sálvia — metas de vida */
-  --color-sage-soft: #c5d4b8; /* sálvia claro — fundo de badges */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
 
-  /* ── NEUTROS ─────────────────────────────────────────────── */
-  --color-cream: #f5efe0; /* bege creme — fundo principal */
-  --color-cream-dark: #ede3cc; /* bege escuro — fundo de colunas */
-  --color-off-white: #faf7f0; /* off-white — fundo de cards */
-  --color-parchment: #e8dfc5; /* pergaminho — bordas e dividers */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
 
-  --color-brown-dark: #3d2b1a; /* marrom escuro — texto principal */
-  --color-brown-mid: #6b4e35; /* marrom médio — texto secundário */
-  --color-brown-light: #9b7b5e; /* marrom claro — texto desabilitado */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
 
-  /* ── CORES DOS Tarefas ──────────────────────────────────── */
-  --postit-yellow: #f5e6a3; /* amarelo pastel */
-  --postit-green: #c8dda0; /* verde pastel */
-  --postit-orange: #f5c9a0; /* laranja pastel */
-  --postit-pink: #f5c0c0; /* rosa pastel */
-  --postit-blue: #b8d4e8; /* azul pastel */
-  --postit-lavender: #d4c0e8; /* lavanda pastel */
+  --shadow-sm: 0 1px 4px rgba(61, 43, 26, 0.08);
+  --shadow-md: 0 4px 16px rgba(61, 43, 26, 0.1);
+  --shadow-lg: 0 8px 32px rgba(61, 43, 26, 0.14);
 
-  /* ── TIPOGRAFIA ──────────────────────────────────────────── */
-  --font-display: "Playfair Display", Georgia, serif; /* headings elegantes */
-  --font-body: "DM Sans", system-ui, sans-serif; /* texto legível */
-
-  --text-xs: 0.75rem; /* 12px */
-  --text-sm: 0.875rem; /* 14px */
-  --text-base: 1rem; /* 16px */
-  --text-md: 1.125rem; /* 18px */
-  --text-lg: 1.25rem; /* 20px */
-  --text-xl: 1.5rem; /* 24px */
-  --text-2xl: 1.875rem; /* 30px */
-  --text-3xl: 2.25rem; /* 36px */
-
-  /* ── ESPAÇAMENTOS ────────────────────────────────────────── */
-  --space-1: 0.25rem; /* 4px  */
-  --space-2: 0.5rem; /* 8px  */
-  --space-3: 0.75rem; /* 12px */
-  --space-4: 1rem; /* 16px */
-  --space-5: 1.25rem; /* 20px */
-  --space-6: 1.5rem; /* 24px */
-  --space-8: 2rem; /* 32px */
-  --space-10: 2.5rem; /* 40px */
-  --space-12: 3rem; /* 48px */
-
-  /* ── BORDAS ──────────────────────────────────────────────── */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-
-  /* ── SOMBRAS ─────────────────────────────────────────────── */
-  --shadow-sm: 0 1px 3px rgba(61, 43, 26, 0.1);
-  --shadow-md: 0 4px 12px rgba(61, 43, 26, 0.12);
-  --shadow-lg: 0 8px 24px rgba(61, 43, 26, 0.16);
-  --shadow-postit: 3px 3px 10px rgba(61, 43, 26, 0.18);
-
-  /* ── TRANSIÇÕES ──────────────────────────────────────────── */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
-  --transition-slow: 0.4s ease;
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* ── SIDEBAR ─────────────────────────────────────────────── */
-  --sidebar-width: 320px;
+  --sidebar-width: 400px;
+  --sidebar-bg: #3d2b1a;
 }

@@ -17,16 +17,14 @@ const CONFIG = {
 
   // Cores disponíveis para os Tarefas
   POSTIT_COLORS: [
-    { name: "Butter", hex: "#FFEDAB" },
-    { name: "Olive Soft", hex: "#C9D7A3" },
-    { name: "Terracotta", hex: "#D8A48F" },
-    { name: "Cherry Soft", hex: "#E3A6A6" },
-    { name: "Oat", hex: "#F0E6DA" },
-    { name: "Sage", hex: "#B7C4A3" },
+    { name: "Vermelho", hex: "#7D2027" },
+    { name: "Terracota", hex: "#CF5527" },
+    { name: "Oliva", hex: "#998731" },
+    { name: "Azul", hex: "#5FA8C2" },
   ],
 
   // Cor padrão ao criar um novo post-it
-  DEFAULT_COLOR: "#F5E6A3",
+  DEFAULT_COLOR: "#998731",
 
   // Duração dos toasts em milissegundos
   TOAST_DURATION: 3000,

@@ -197,9 +197,9 @@ const updateCounters = (counts) => {
  */
 const getEmptyColumnHTML = (category) => {
   const messages = {
-    day: { icon: "fa-sun", text: "Nenhuma tarefa para hoje" },
-    week: { icon: "fa-calendar", text: "Nenhuma tarefa esta semana" },
-    month: { icon: "fa-mountain", text: "Nenhuma tarefa este mês" },
+    day: { icon: "fa-calendar", text: "Nenhuma tarefa para hoje" },
+    week: { icon: "fa-calendar", text: "Nenhuma tarefa para esta semana" },
+    month: { icon: "fa-calendar", text: "Nenhuma tarefa para este mês" },
   };
 
   const { icon, text } = messages[category] || messages.day;
