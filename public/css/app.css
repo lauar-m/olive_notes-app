@@ -1092,22 +1092,6 @@ textarea.form-control {
   pointer-events: none;
 }
 
-.loading-icon {
-  width: 52px;
-  height: 52px;
-  background: var(--color-olive);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: loadPulse 1.4s ease-in-out infinite;
-}
-
-.loading-icon i {
-  font-size: 1.375rem;
-  color: #fff;
-}
-
 @keyframes loadPulse {
   0%,
   100% {
