@@ -50,6 +50,12 @@ const taskSchema = new mongoose.Schema(
       default: "pending",
     },
 
+    // Data/hora em que a tarefa foi concluída
+    completedAt: {
+      type: Date,
+      default: null,
+    },
+
     // Referência ao usuário dono desta tarefa
     // Isso garante que um usuário só veja suas próprias tarefas
     userId: {

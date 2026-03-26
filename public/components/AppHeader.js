@@ -52,6 +52,7 @@ window.createAppHeader = function ({
     { key: "all", label: "Todas" },
     { key: "pending", label: "Pendentes" },
     { key: "done", label: "Concluídas" },
+    { key: "archived", label: "Arquivadas" },
   ].forEach(({ key, label }) => {
     const btn = document.createElement("button");
     btn.className = "filter-btn" + (currentFilter === key ? " active" : "");

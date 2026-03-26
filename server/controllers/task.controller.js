@@ -121,6 +121,15 @@ const updateTask = async (req, res) => {
       }
     });
 
+    // Se status mudou para done, define completedAt
+    if (req.body.status === "done" && !task.completedAt) {
+      task.completedAt = new Date();
+    }
+    // Se reabriu a tarefa, limpa completedAt
+    if (req.body.status === "pending") {
+      task.completedAt = null;
+    }
+
     // Salva as alterações (dispara as validações do schema)
     await task.save();
 

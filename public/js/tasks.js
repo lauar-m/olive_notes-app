@@ -1,5 +1,43 @@
 let taskStore = []; // todas as tarefas do usuário
 let currentFilter = "all"; // filtro ativo: 'all' | 'pending' | 'done'
+// Uma tarefa é arquivada se:
+// - status === 'done'
+// - NÃO pertence ao dia, semana ou mês atual
+function isArchived(task) {
+  if (!task || task.status !== "done") return false;
+  const now = new Date();
+  const completed = task.completedAt ? new Date(task.completedAt) : null;
+  if (!completed) return false;
+  // Funções auxiliares
+  const isToday =
+    completed.getDate() === now.getDate() &&
+    completed.getMonth() === now.getMonth() &&
+    completed.getFullYear() === now.getFullYear();
+  const getWeek = (d) => {
+    const date = new Date(d.getTime());
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+    const yearStart = new Date(date.getFullYear(), 0, 1);
+    return Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+  };
+  const isSameWeek =
+    completed.getFullYear() === now.getFullYear() &&
+    getWeek(completed) === getWeek(now);
+  const isSameMonth =
+    completed.getFullYear() === now.getFullYear() &&
+    completed.getMonth() === now.getMonth();
+
+  if (task.category === "day") {
+    return !isToday;
+  }
+  if (task.category === "week") {
+    return !isSameWeek;
+  }
+  if (task.category === "month") {
+    return !isSameMonth;
+  }
+  return false;
+}
 
 // Estado do modal de criação/edição
 const modalState = {
@@ -64,10 +102,6 @@ window.loadTasks = loadTasks;
 
 // ── RENDERIZAÇÃO ──────────────────────────────────────────────
 
-/**
- * Renderiza as 3 colunas com base em taskStore e currentFilter.
- * Este é o único ponto de renderização — toda ação chama isso.
- */
 const renderAllColumns = () => {
   const categories = [
     { key: "day", title: "Hoje", subtitle: "Foco do dia" },
@@ -75,16 +109,25 @@ const renderAllColumns = () => {
     { key: "month", title: "Mês", subtitle: "Este mês" },
   ];
 
-  // Aplica o filtro de status se necessário
-  const filtered =
-    currentFilter === "all"
-      ? taskStore
-      : taskStore.filter((t) => t.status === currentFilter);
+  // Filtragem principal
+  let filtered = [];
+  if (currentFilter === "all") {
+    // Todas: não mostra arquivadas
+    filtered = taskStore.filter((t) => !isArchived(t));
+  } else if (currentFilter === "archived") {
+    filtered = taskStore.filter(isArchived);
+  } else {
+    // pending/done: só não mostra arquivadas
+    filtered = taskStore.filter(
+      (t) => t.status === currentFilter && !isArchived(t),
+    );
+  }
 
   // Contadores por categoria (sempre do total, sem filtro de status)
   const counts = { day: 0, week: 0, month: 0 };
   taskStore.forEach((t) => {
-    if (counts[t.category] !== undefined) counts[t.category]++;
+    if (counts[t.category] !== undefined && !isArchived(t))
+      counts[t.category]++;
   });
   updateCounters(counts);
 
@@ -92,6 +135,27 @@ const renderAllColumns = () => {
   if (!wrapper) return;
   wrapper.innerHTML = "";
 
+  if (currentFilter === "archived") {
+    // Renderiza só coluna arquivadas
+    const col = window.createTaskColumn({
+      category: "archived",
+      title: "Arquivadas",
+      subtitle: "Tarefas concluídas e antigas",
+      counter: filtered.length,
+      tasks: filtered,
+      onAdd: null,
+      onToggle: handleToggleTask,
+      onEdit: openTaskModal,
+      onDelete: handleDeleteTask,
+      formatDate,
+      getEmptyColumnHTML,
+      initDragOnCards,
+    });
+    wrapper.appendChild(col);
+    return;
+  }
+
+  // Colunas principais
   categories.forEach(({ key, title, subtitle }) => {
     const tasks = filtered.filter((t) => t.category === key);
     const col = window.createTaskColumn({
