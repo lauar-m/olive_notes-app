@@ -1,47 +1,47 @@
 # Olive Notes
 
-Organize sua vida, uma tarefa de cada vez!
+Organize your life, one task at a time!
 
-Olive Notes é um aplicativo fullstack para organização de tarefas diárias, semanais, mensais e metas de longo prazo, inspirado no visual mid-century modern. Feito com Node.js, Express, MongoDB e Vanilla JS totalmente componentizado.
-
----
-
-## Funcionalidades
-
-- **Autenticação JWT** (login/cadastro)
-- **Tarefas** (CRUD, drag-and-drop entre colunas, cores personalizadas)
-- **Metas de longo prazo** (anuais e de vida, CRUD)
-- **UI moderna** (componentes JS, responsivo, animações, toasts)
-- **API RESTful** protegida
+Olive Notes is a full-stack application for organizing daily, weekly, monthly tasks, and long-term goals, inspired by mid-century modern aesthetics. Built with Node.js, Express, MongoDB, and fully componentized Vanilla JS.
 
 ---
 
-## Tecnologias
+## Features
+
+- **JWT Authentication** (login/signup)
+- **Tasks** (CRUD, drag-and-drop between columns, custom colors)
+- **Long-term goals** (annual and life goals, CRUD)
+- **Modern UI** (JS components, responsive design, animations, toasts)
+- **Protected RESTful API**
+
+---
+
+## Tech Stack
 
 - **Backend:** Node.js, Express, MongoDB, Mongoose, JWT, bcrypt
-- **Frontend:** HTML, CSS (custom properties), Vanilla JS (componentes), Font Awesome
+- **Frontend:** HTML, CSS (custom properties), Vanilla JS (components), Font Awesome
 
 ---
 
-## Como rodar localmente
+## How to run locally
 
-### 1. Clone o repositório
+### 1. Clone the repository
 
 ```sh
 git clone https://github.com/seu-usuario/olive-notes.git
 cd olive-notes-app
 ```
 
-### 2. Instale as dependências do backend
+### 2. Install backend dependencies
 
 ```sh
 cd server
 npm install
 ```
 
-### 3. Configure o ambiente
+### 3. Configure the environment
 
-Crie um arquivo `.env` em `server/` baseado no `.env.example`:
+Create a `.env` file in `server/` based on `.env.example`:
 
 ```
 MONGO_URI=mongodb://localhost:27017/olive_notes
@@ -50,55 +50,54 @@ JWT_EXPIRES_IN=7d
 PORT=3000
 ```
 
-### 4. Inicie o servidor
+### 4. Start the server
 
 ```sh
 npm start
 ```
 
-O backend estará em http://localhost:3000
+The backend will be running at http://localhost:3000
 
-### 5. Acesse o frontend
+### 5. Access the frontend
 
-Abra `public/index.html` ou `public/app.html` no navegador, ou acesse via http://localhost:3000 se estiver servindo arquivos estáticos.
+Open `public/index.html` or `public/app.html` in your browser, or access it via http://localhost:3000 if you are serving static files.
 
 ---
 
-## Estrutura do projeto
+## Project structure
 
 ```
-server/           # Backend Node.js/Express
-	config/         # Configuração do banco
-	controllers/    # Lógica de negócio
+server/           # Node.js/Express Backend
+	config/         # Database configuration
+	controllers/    # Business logic
 	middleware/     # Middlewares (auth)
-	models/         # Schemas Mongoose
-	routes/         # Rotas da API
+	models/         # Mongoose schemas
+	routes/         # API routes
 	index.js        # Entry point
-public/           # Frontend Vanilla JS
-	css/            # Estilos (variables, app, auth)
-	js/             # Lógica (api, auth, app, tasks, goals, dragdrop, ui)
-	components/     # Componentes JS reutilizáveis
-	index.html      # Tela de login/cadastro
-	app.html        # Dashboard principal
+public/           # Vanilla JS Frontend
+	css/            # Styles (variables, app, auth)
+	js/             # Logic (api, auth, app, tasks, goals, dragdrop, ui)
+	components/     # Reusable JS components
+	index.html      # Login/signup page
+	app.html        # Main dashboard
 ```
 
 ---
 
-## Scripts úteis
+## Useful scripts
 
-- `npm start` — Inicia o backend em modo produção
-- `npm run dev` — Inicia o backend com nodemon (dev)
-
----
-
-## Licença
-
-MIT. Sinta-se livre para usar, modificar e contribuir!
+- `npm start` — Starts the backend in production mode
+- `npm run dev` — Starts the backend with nodemon (dev mode)
 
 ---
 
-## Créditos
+## License
 
-- Design e código: [Malu Lauar]
-- Ícones: Font Awesome
-- Inspiração: Kanban, Notion, Notas do Keep
+MIT. Feel free to use, modify, and contribute!
+---
+
+## Credits
+
+- Design and code: [Malu Lauar](https://github.com/lauar-m)
+- Icons: Font Awesome Font Awesome
+- Inspiration: Kanban, Notion, Keep Notes
